@@ -1,8 +1,12 @@
 import { useReactTable, getCoreRowModel, getSortedRowModel, getPaginationRowModel, flexRender } from "@tanstack/react-table";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const DataTable = ({ data, columns }) => {
+    const {pathname}= useLocation()
+    const RouteName =pathname.slice(1).charAt(0).toUpperCase()+ pathname.slice(2)
+    
     const [sorting, setSorting] = useState([]);
     const [columnVisibility, setColumnVisibility] = useState({});
     const [showColumnsMenu, setShowColumnsMenu] = useState(false);
@@ -36,11 +40,16 @@ const handleClickOutside = (event)=>{
     return (
         <div className="w-full">
             <div className="relative">
+                    <div className="flex items-center px-2">
 
                 <button className="p-2 rounded-md bg-green-500 w-fit text-white text-lg font-semibold block m-3 ml-auto cursor-pointer"
                  onClick={(e) =>{ e.stopPropagation();setShowColumnsMenu(prev => !prev)}}>
                     Open Toggle Columns
                 </button>
+                <button className="bg-green-500 p-2 text-white rounded-md text-lg font-semibold cursor-pointer">
+                    Add {RouteName}
+                </button>
+                    </div>
                 {
                     showColumnsMenu &&
 
