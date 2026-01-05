@@ -1,10 +1,19 @@
-import React from 'react'
+import DataTable from '../componenst/DataTable';
 
 const Vehicle = () => {
+  const columns =[
+    {
+      header:"Vehicle ID",
+      accessorkey:"vehicle-id"
+    },
+    {
+      header:"Vehicle Name",
+      accessorkey:'vehicle-name'
+    },
+    
+  ]
   return (
-    <div>
-      Vehicle Page
-    </div>
+  <DataTable columns={columns} data={[]}/>
   )
 }
 

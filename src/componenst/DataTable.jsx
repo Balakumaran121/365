@@ -6,7 +6,7 @@ const DataTable = ({ data, columns }) => {
     const [sorting, setSorting] = useState([]);
     const [columnVisibility, setColumnVisibility] = useState({});
     const [showColumnsMenu, setShowColumnsMenu] = useState(false);
-
+    // eslint-disable-next-line react-hooks/incompatible-library
     const table = useReactTable({
         data,
         columns,
@@ -28,22 +28,23 @@ const handleClickOutside = (event)=>{
         setShowColumnsMenu(false)
     }
 }
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('click', handleClickOutside);
     return ()=>{
-        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener('click ', handleClickOutside);
     }
 },[])
     return (
         <div className="w-full">
             <div className="relative">
 
-                <button className="p-2 rounded-md bg-green-500 w-fit text-white text-lg font-semibold block m-3 ml-auto cursor-pointer" onClick={() => setShowColumnsMenu(prev => !prev)}>
+                <button className="p-2 rounded-md bg-green-500 w-fit text-white text-lg font-semibold block m-3 ml-auto cursor-pointer"
+                 onClick={(e) =>{ e.stopPropagation();setShowColumnsMenu(prev => !prev)}}>
                     Open Toggle Columns
                 </button>
                 {
                     showColumnsMenu &&
 
-                    <div ref={menuRef} className="absolute right-10 z-10 shadow-md flex flex-col gap-4 mb-4 bg-slate-100 w-fit p-3">
+                    <div ref={menuRef} onClick={(e)=>e.stopPropagation()} className="absolute right-10 z-10 shadow-md flex flex-col gap-4 mb-4 bg-slate-100 w-fit p-3">
                         {table.getAllLeafColumns().map((column) => (
                             <label key={column.id} className="flex gap-2 items-center text-sm">
                                 <input type="checkbox" className="peer hidden" checked={column.getIsVisible()} onChange={column.getToggleVisibilityHandler()} />
@@ -76,7 +77,7 @@ const handleClickOutside = (event)=>{
                 }
 
                 {
-                    table.getRowModel().rows.map((row) => (
+                  table.getRowModel().rows.length>0? ( table.getRowModel().rows?.map((row) => (
                         <div ley={row.id} className="grid border-b hover:bg-gray-50" style={{ gridTemplateColumns: `repeat(${row.getVisibleCells().length},1fr)` }}>
                             {row.getVisibleCells().map((cell) => (
                                 <div key={cell.id} className="p-3 border-r last:border-r-0">
@@ -84,7 +85,11 @@ const handleClickOutside = (event)=>{
                                 </div>
                             ))}
                         </div>
-                    ))
+                    ))):(
+                        <div className="h-40 flex justify-center items-center">
+                           <h1> No Records Founds</h1>
+                        </div>
+                    )
                 }
             </div>
             <div className="flex justify-between items-center mt-4">
