@@ -1,3 +1,4 @@
+import { Delete, Edit, SquarePen, Trash } from 'lucide-react';
 import DataTable from '../componenst/DataTable'
 import { ORDERS_DATA } from '../constants'
 
@@ -33,6 +34,20 @@ const Orders = () => {
       cell:({getValue})=>{
         const value = getValue();
         return `$${value.toFixed(2)}`;
+      }
+    },
+    {
+      header:"Actions",
+      accessorKey:"action",
+      cell:({row})=>{
+        const value = row.original
+        return (
+          <div className='flex gap-3 cursor-pointer'>
+            
+            <SquarePen size={20}  onClick={()=>{console.log("edit",value)}} />
+            <Trash size={20} onClick={()=>{console.log('delete',value)}}/>
+          </div>
+        )
       }
     }
   ]

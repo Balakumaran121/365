@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react';
 import NavItem from './NavItem';
 const TopBar = () => {
     const [mobileOpen, setMobileOpen] = useState(false)
+    const [openMenu,setOpenMenu]=useState(false)
     return (
         <div className='bg-gray-100 py-4 px-6 flex items-center justify-between relative'>
             <h1 className='text-xl font-extrabold text-green-600'>365.in</h1>
@@ -21,7 +22,17 @@ const TopBar = () => {
 
             </nav>
             <div className='flex items-center gap-4'>
-                <div className='size-10 rounded-full bg-gray-800' />
+                <div className='relative'>
+                    <div className='size-10 rounded-full bg-gray-800' onClick={()=>{setOpenMenu(prev=>!prev)}}/>
+                        {
+                            openMenu && (
+                                <div className='absolute z-10 top-12  bg-gray-300 flex flex-col gap-2 rounded p-2 right-1 text-base font-normal '>
+                                    <p>Settings</p>
+                                    <p>Profile</p>
+                                </div>
+                            )
+                        }
+                </div>
                 <button type='button' onClick={() => setMobileOpen((v) => !v)} aria-label={mobileOpen ? 'Close Menu' : 'Open Menu'} className='md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-green-500'>
                     {mobileOpen ? (<X className='cursor-pointer' />) : (<Menu className='cursor-pointer' />)}
                 </button>

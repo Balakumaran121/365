@@ -1,6 +1,6 @@
 import { useReactTable, getCoreRowModel, getSortedRowModel, getPaginationRowModel, flexRender } from "@tanstack/react-table";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const DataTable = ({ data, columns }) => {
     const [sorting, setSorting] = useState([]);
@@ -20,7 +20,19 @@ const DataTable = ({ data, columns }) => {
         getSortedRowModel: getSortedRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
     })
-
+const visibleColumns = table.getVisibleLeafColumns()
+const menuRef = useRef(null)
+useEffect(()=>{
+const handleClickOutside = (event)=>{
+    if(menuRef.current && !menuRef.current.contains(event.target)){
+        setShowColumnsMenu(false)
+    }
+}
+    document.addEventListener('mousedown', handleClickOutside);
+    return ()=>{
+        document.removeEventListener('mousedown', handleClickOutside);
+    }
+},[])
     return (
         <div className="w-full">
             <div className="relative">
@@ -31,7 +43,7 @@ const DataTable = ({ data, columns }) => {
                 {
                     showColumnsMenu &&
 
-                    <div className="absolute right-10 z-10 shadow-md flex flex-col gap-4 mb-4 bg-slate-100 w-fit p-3">
+                    <div ref={menuRef} className="absolute right-10 z-10 shadow-md flex flex-col gap-4 mb-4 bg-slate-100 w-fit p-3">
                         {table.getAllLeafColumns().map((column) => (
                             <label key={column.id} className="flex gap-2 items-center text-sm">
                                 <input type="checkbox" className="peer hidden" checked={column.getIsVisible()} onChange={column.getToggleVisibilityHandler()} />
@@ -43,8 +55,11 @@ const DataTable = ({ data, columns }) => {
 
                 }
             </div>
-
-            <div className="border border-gray-300 rounded">
+            {
+                visibleColumns.length===0?(
+                    <div className="p-4 text-center text-gray-500">No columns selected</div>
+                ):<>
+                <div className="border border-gray-300 rounded">
                 {
                     table.getHeaderGroups().map((headerGroup) => (
                         <div key={headerGroup.id} className="grid bg-gray-100 border-b" style={{ gridTemplateColumns: `repeat(${headerGroup.headers.length},1fr)` }}>
@@ -74,11 +89,15 @@ const DataTable = ({ data, columns }) => {
             </div>
             <div className="flex justify-between items-center mt-4">
                 <div className="flex gap-2">
-                    <button className="px-3 py-1 rounded border" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Prev</button>
-                    <button className="px-3 py-1 rounded border" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next</button>
+                    <button className="px-3 py-1 rounded border hover:bg-gray-100 hover:shadow-md" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Prev</button>
+                    <button className="px-3 py-1 rounded border hover:bg-gray-100 hover:shadow-md" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next</button>
                     <span className="text-sm  flex items-center">Page {table.getState().pagination.pageIndex+1} of {" "}{table.getPageCount()}</span>
                 </div>
             </div>
+                </>
+            }
+
+            
         </div>
     )
 }

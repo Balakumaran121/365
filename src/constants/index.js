@@ -72,3 +72,30 @@ import { Facebook, Instagram,  Twitter } from "lucide-react"
             totalAmount:300.00
         }
     ]
+
+    export const PRODUCTS_DATA=[
+        {
+            id:1,
+            productId:"PROD001",
+            productName:"Product A",
+            category:"Category 1",
+            price:50.00,
+            stock:100
+        },
+        {
+            id:2,
+            productId:"PROD002",
+            productName:"Product B",
+            category:"Category 2",
+            price:75.00,
+            stock:200
+        },
+        {
+            id:3,
+            productId:"PROD003",
+            productName:"Product C",
+            category:"Category 1",
+            price:100.00,
+            stock:0
+        }
+    ]

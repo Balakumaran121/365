@@ -8,14 +8,15 @@ import Vehicle from './pages/Vehicle'
 import Products from './pages/Products'
 import Orders from './pages/Orders'
 import CommonLayout from './layout/CommonLayout'
+import PageNotFound from './componenst/PageNotFound'
+import Test from './pages/Test'
 
 const AppRouter = () => {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<CommonLayout />}>
-
-                    <Route index  element={<Dashboard />} />
+                    <Route index element={<Dashboard />} />
                     <Route path="trips" element={<Trips />} />
                     <Route path="settings" element={<Settings />} />
                     <Route path="driver" element={<Driver />} />
@@ -23,6 +24,8 @@ const AppRouter = () => {
                     <Route path='products' element={<Products />} />
                     <Route path='orders' element={<Orders />} />
                 </Route>
+                <Route path="*" element={<PageNotFound />} />
+                <Route path='/test' element={<Test />} />
             </Routes>
         </BrowserRouter>
     )
