@@ -1,11 +1,12 @@
-import { Delete, Edit, SquarePen, Trash } from 'lucide-react';
+import {  SquarePen, Trash, X } from 'lucide-react';
 import DataTable from '../componenst/DataTable'
 import { ORDERS_DATA } from '../constants'
 import toast from 'react-hot-toast';
-import { useState } from 'react';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { setOpenAddForm } from '../redux/slices/orderSlice';
 const Orders = () => {
-  const [ordersData,setOrdersData]=useState(ORDERS_DATA)
+  const dispatch = useDispatch()
+  const {ordersData,openAddForm}=useSelector((state)=>state.orders)
   const columns =[
     {
       header:"Order ID",
@@ -58,15 +59,42 @@ const Orders = () => {
   const handleAddOrders=()=>{
       const isAdd = true;
       if(isAdd){
-        const newData = {id:ordersData.length+1,orderId:`ORD${ordersData.length+1}`,customerName:"Dhruv",status:"Pending",totaltAmount:'454'}
-        setOrdersData((prev)=>[...prev,newData])
+        dispatch(setOpenAddForm())
       }else{
         toast.error("Orders Can't Add!")
       }
   }
   return (
     <div>
-     <DataTable columns={columns} data={ORDERS_DATA} isPagination={true} entries={[10,25,50,100]} handleAdd={handleAddOrders}/>
+     <DataTable columns={columns} data={ordersData} isPagination={true} entries={[10,25,50,100]} handleAdd={handleAddOrders}/>
+     
+        <div className={`fixed top-0 right-0 h-full w-100 bg-white z-80 shadow-lg transform transition-transform duration-300 ease-in-out ${openAddForm?"translate-x-0":"translate-x-full "} `}>
+        <div className='flex justify-between p-4' onClick={()=>{dispatch(setOpenAddForm())}}>
+          <h1 className='text-lg font-semibold  hover:text-gray-500'>Add Orders</h1>
+          <X className='hover:text-red-500 cursor-pointer'/>
+          </div>
+          <div className='p-3 flex flex-col gap-5'>
+            <div className='flex flex-col gap-2 '>
+              <label htmlFor="Customer Name" className='text-lg font-semibold'>Customer Name</label>
+              <input type="text" className='border border-black p-2 rounded-lg' />
+            </div>
+             <div className='flex flex-col gap-2 '>
+              <label htmlFor="Date" className='text-lg font-semibold'>Date</label>
+              <input type="text" className='border border-black p-2 rounded-lg' />
+            </div>
+             <div className='flex flex-col gap-2 my-1'>
+              <label htmlFor="Status" className='text-lg font-semibold'>Status</label>
+              <input type="text" className='border border-black p-2 rounded-lg' />
+            </div>
+             <div className='flex flex-col gap-2 my-1'>
+              <label htmlFor="Total Amount" className='text-lg font-semibold'>Total Amount</label>
+              <input type="text" className='border border-black p-2 rounded-lg' />
+            </div>
+          </div>
+          <div className='p-3 w-full flex flex-col h-1/2 justify-end'>
+            <button className='p-3 bg-green-500 rounded w-full '>Submit</button>
+          </div>
+        </div>
     </div>
   )
 }
