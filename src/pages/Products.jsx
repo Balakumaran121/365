@@ -1,5 +1,4 @@
 import DataTable from '../componenst/DataTable'
-import { PRODUCTS_DATA } from '../constants'
 
 const Products = () => {
   const columns = [
@@ -28,7 +27,7 @@ const Products = () => {
   ]
   return (
     <div>
-      <DataTable columns={columns} data={PRODUCTS_DATA} />
+      <DataTable columns={columns} data={[]} />
     </div>
   )
 }
