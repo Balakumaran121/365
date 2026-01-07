@@ -1,8 +1,11 @@
 import { Delete, Edit, SquarePen, Trash } from 'lucide-react';
 import DataTable from '../componenst/DataTable'
 import { ORDERS_DATA } from '../constants'
+import toast from 'react-hot-toast';
+import { useState } from 'react';
 
 const Orders = () => {
+  const [ordersData,setOrdersData]=useState(ORDERS_DATA)
   const columns =[
     {
       header:"Order ID",
@@ -51,9 +54,19 @@ const Orders = () => {
       }
     }
   ]
+
+  const handleAddOrders=()=>{
+      const isAdd = true;
+      if(isAdd){
+        const newData = {id:ordersData.length+1,orderId:`ORD${ordersData.length+1}`,customerName:"Dhruv",status:"Pending",totaltAmount:'454'}
+        setOrdersData((prev)=>[...prev,newData])
+      }else{
+        toast.error("Orders Can't Add!")
+      }
+  }
   return (
     <div>
-     <DataTable columns={columns} data={ORDERS_DATA} isPagination={true} entries={[10,25,50,100]}/>
+     <DataTable columns={columns} data={ORDERS_DATA} isPagination={true} entries={[10,25,50,100]} handleAdd={handleAddOrders}/>
     </div>
   )
 }

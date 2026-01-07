@@ -23,7 +23,9 @@ const TopBar = () => {
             </nav>
             <div className='flex items-center gap-4'>
                 <div className='relative'>
-                    <div className='size-10 rounded-full bg-gray-800' onClick={()=>{setOpenMenu(prev=>!prev)}}/>
+                    <div className='size-10 rounded-full bg-gray-400 flex justify-center items-center text-white' onClick={()=>{setOpenMenu(prev=>!prev)}}>
+                        <h1>BK</h1>
+                    </div>
                         {
                             openMenu && (
                                 <div className='absolute z-10 top-12  bg-gray-300 flex flex-col gap-2 rounded p-2 right-1 text-base font-normal '>

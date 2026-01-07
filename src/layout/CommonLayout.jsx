@@ -1,6 +1,7 @@
 import TopBar from '../componenst/TopBar'
 import { Outlet } from 'react-router-dom'
 import Footer from '../componenst/Footer'
+import { Toaster } from 'react-hot-toast'
 
 const CommonLayout = () => {
     return (
@@ -14,6 +15,10 @@ const CommonLayout = () => {
             <footer>
                 <Footer />
             </footer>
+            <Toaster
+  position="bottom-center"
+  reverseOrder={false}
+/>
         </div>
     )
 }

@@ -3,7 +3,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-const DataTable = ({ data, columns }) => {
+const DataTable = ({ data=[], columns=[],handleAdd=()=>{} }) => {
     const {pathname}= useLocation()
     const RouteName =pathname.slice(1).charAt(0).toUpperCase()+ pathname.slice(2)
     
@@ -46,7 +46,7 @@ const handleClickOutside = (event)=>{
                  onClick={(e) =>{ e.stopPropagation();setShowColumnsMenu(prev => !prev)}}>
                     Open Toggle Columns
                 </button>
-                <button className="bg-green-500 p-2 text-white rounded-md text-lg font-semibold cursor-pointer">
+                <button onClick={handleAdd} className="bg-green-500 p-2 text-white rounded-md text-lg font-semibold cursor-pointer">
                     Add {RouteName}
                 </button>
                     </div>
