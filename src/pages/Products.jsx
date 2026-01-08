@@ -6,6 +6,8 @@ import CustomForm from '../componenst/CustomForm';
 import { PRODUCT_FIELDS } from '../constants';
 import { useFormik } from 'formik';
 import { productScehma } from '../validaionSchema/productSchema';
+import { deleteProducts, setProductsData } from '../redux/slices/productSlice';
+import { SquarePen, Trash } from 'lucide-react';
 
 
 const initialValues = PRODUCT_FIELDS.reduce((acc,field)=>{
@@ -15,6 +17,7 @@ const initialValues = PRODUCT_FIELDS.reduce((acc,field)=>{
 const Products = () => {
   const dispatch = useDispatch()
   const {openForm}=useSelector((state)=>state.menu)
+  const {productsData} = useSelector((state)=>state.products)
   const handleProducts = ()=>{
    const isAdd = true
    if(isAdd){
@@ -38,11 +41,26 @@ const Products = () => {
     },
     {
       header: "In Stock",
-      accessorKey: 'stock',
+      accessorKey: 'status',
       cell:({getValue})=>{
         const value = getValue();
         return (
           <span className={` px-1 py-2 ${value>0?"text-green-500":"text-red-500"}`}>{value>0?value:"Out of Stock"}</span>
+        )
+      }
+    },
+    {
+      header: "Actions",
+      accessorKey: "action",
+      cell: ({ row }) => {
+        const value = row.original
+        console.log(value)
+        return (
+          <div className='flex gap-3 cursor-pointer'>
+
+            <SquarePen size={20} onClick={() => { console.log("edit", value) }} />
+            <Trash size={20} onClick={() => {dispatch(deleteProducts(value.id)) }} />
+          </div>
         )
       }
     }
@@ -50,11 +68,16 @@ const Products = () => {
   const formik = useFormik({
     initialValues:initialValues,
     validationSchema:productScehma,
+    onSubmit:(val)=>{
+      dispatch(setProductsData(val))
+      dispatch(setOpenAdd(false))
+    }
   })
+
   return (
     <div>
-      <DataTable columns={columns} data={[]} handleAdd={handleProducts} />
-     <CustomForm FIELDS={PRODUCT_FIELDS} formik={formik} state={openForm} setter={()=>{dispatch(setOpenAdd())}}/>
+      <DataTable columns={columns} data={productsData} handleAdd={handleProducts} />
+     <CustomForm FIELDS={PRODUCT_FIELDS} formik={formik} state={openForm} setter={()=>{dispatch(setOpenAdd(false))}}/>
     </div>
   )
 }

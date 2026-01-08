@@ -10,7 +10,7 @@ const persistConfig = {
 }
 const rootReducer =combineReducers({
     orders: OrderSlice,
-    product:ProductSlice,
+    products:ProductSlice,
     menu:MenuSlice,
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)

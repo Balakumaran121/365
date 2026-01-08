@@ -7,10 +7,19 @@ const productSlice = createSlice({
     },
     reducers: {
         setProductsData: (state, action) => {
-            state.productsData = [...state.productsData, action.payload]
+            const proId = state.productsData.length + 1;
+            state.productsData.push({
+                ...action.payload,
+                id:proId,
+                productId:`PRO${proId}`
+            })
+
+        },
+        deleteProducts:(state,action)=>{
+            state.productsData=state.productsData.filter((val)=>val.id!==action.payload)
         }
     }
 })
 
-export const { setProductsData } = productSlice.actions
+export const { setProductsData,deleteProducts } = productSlice.actions
 export default productSlice.reducer

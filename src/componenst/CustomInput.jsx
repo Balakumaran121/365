@@ -8,7 +8,7 @@ const CustomInput = ({ placeholder, name, label,type="text",formik,options=[] })
           {(type==="text"||type==="date")?
           <input id={name} name={name} type={type} placeholder={placeholder} value={formik.values[name]??""} onChange={formik.handleChange} onBlur={formik.handleBlur} className='border border-black p-2 rounded-lg' />:
           <select id={name} name={name}  value={formik.values[name]??""} onChange={formik.handleChange} onBlur={formik.handleBlur} className='border border-black p-2 rounded-lg'>
-            <option value=""></option>
+            <option value="" disabled>Select Option</option>
             {options.map((opt)=>(
                 <option key={opt} value={opt}>
                     {opt}
