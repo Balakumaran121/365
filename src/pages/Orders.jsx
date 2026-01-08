@@ -3,7 +3,7 @@ import DataTable from '../componenst/DataTable'
 import { ORDER_FIELDS } from '../constants'
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { setOpenAddForm, setOrdersData } from '../redux/slices/orderSlice';
+import { setOpenAddForm, setOrdersData ,deleteOrdersData} from '../redux/slices/orderSlice';
 import CustomInput from '../componenst/CustomInput';
 import { useFormik } from 'formik';
 import { orderSchema } from '../validaionSchema/ordersScheme';
@@ -69,7 +69,7 @@ const Orders = () => {
           <div className='flex gap-3 cursor-pointer'>
 
             <SquarePen size={20} onClick={() => { console.log("edit", value) }} />
-            <Trash size={20} onClick={() => { console.log('delete', value) }} />
+            <Trash size={20} onClick={() => {dispatch(deleteOrdersData(value.id)) }} />
           </div>
         )
       }

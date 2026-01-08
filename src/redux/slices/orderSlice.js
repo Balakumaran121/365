@@ -17,9 +17,12 @@ const orderSlice = createSlice({
         },
         setOpenAddForm: (state) => {
             state.openAddForm = !state?.openAddForm
+        },
+        deleteOrdersData:(state,action)=>{
+            state.ordersData=state.ordersData.filter((val)=>val.id!==action.payload)
         }
     }
 })
 
-export const { setOrdersData, setOpenAddForm } = orderSlice.actions;
+export const { setOrdersData, setOpenAddForm,deleteOrdersData } = orderSlice.actions;
 export default orderSlice.reducer;
