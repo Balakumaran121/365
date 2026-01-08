@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpenAddForm, setOrdersData ,deleteOrdersData} from '../redux/slices/orderSlice';
 import { useFormik } from 'formik';
-import { orderSchema } from '../validaionSchema/ordersScheme';
+import { orderSchema } from '../validaionSchema/ordersSchema';
 import CustomForm from '../componenst/CustomForm';
 const initialValues = ORDER_FIELDS.reduce((acc, field) => {
   acc[field.name] = ""
