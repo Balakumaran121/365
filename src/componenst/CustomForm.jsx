@@ -6,13 +6,15 @@ const CustomForm = ({formik,FIELDS,setter,state}) => {
   return (
     
       <div className={`fixed top-0 right-0 h-full w-100 bg-white z-80 shadow-lg transform transition-transform duration-300 ease-in-out ${state ? "translate-x-0" : "translate-x-full "} `}>
-        <form onSubmit={formik?.handleSubmit} className='space-y-4 flex flex-col justify-between h-full'>
-            <div className='space-y-4'>
+        <form onSubmit={formik?.handleSubmit} className=' flex flex-col  h-full'>
+           
 
-          <div className='flex justify-between p-4' onClick={() => { setter();formik?.resetForm() }}>
-            <h1 className='text-lg font-semibold  hover:text-gray-500'>Add Orders</h1>
+          <div className='flex justify-between items-center p-4 border-b' onClick={() => { setter();formik?.resetForm() }}>
+            <h1 className='text-lg font-semibold  '>Add Orders</h1>
             <X className='hover:text-red-500 cursor-pointer' />
           </div>
+          <div className='flex-1 overflow-y-auto p-4 space-y-4'>
+
           {
             FIELDS.map((field) => (
               <CustomInput
@@ -26,10 +28,11 @@ const CustomForm = ({formik,FIELDS,setter,state}) => {
               />
             ))
           }
-            </div>
-            <div className='p-4 border-t'>
+          </div>
+            
+            <div className='p-4 border-t bg-white'>
 
-          <button className='p-3 mx-14 bg-green-500 hover:bg-green-700 rounded w-[70%] cursor-pointer text-lg font-semibold ' type='submit'>Submit</button>
+          <button className='p-3  bg-green-500 hover:bg-green-600 rounded w-full cursor-pointer text-lg font-semibold ' type='submit'>Submit</button>
             </div>
         </form>
 
