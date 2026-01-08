@@ -1,9 +1,18 @@
-import { configureStore } from "@reduxjs/toolkit";
-import OrderSlice from './slices/orderSlice'
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import OrderSlice from './slices/orderSlice';
 
-const store = configureStore({
-    reducer:{
-        orders:OrderSlice,
-    }
+const persistConfig = {
+    key: 'root',
+    storage
+}
+const rootReducer =combineReducers({
+    orders: OrderSlice
 })
-export default store
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+export const store = configureStore({
+    reducer: persistedReducer
+})
+
+export const persistor = persistStore(store)
