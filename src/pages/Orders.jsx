@@ -1,12 +1,12 @@
-import { SquarePen, Trash, X } from 'lucide-react';
+import { SquarePen, Trash } from 'lucide-react';
 import DataTable from '../componenst/DataTable'
 import { ORDER_FIELDS } from '../constants'
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpenAddForm, setOrdersData ,deleteOrdersData} from '../redux/slices/orderSlice';
-import CustomInput from '../componenst/CustomInput';
 import { useFormik } from 'formik';
 import { orderSchema } from '../validaionSchema/ordersScheme';
+import CustomForm from '../componenst/CustomForm';
 const initialValues = ORDER_FIELDS.reduce((acc, field) => {
   acc[field.name] = ""
   return acc;
@@ -88,32 +88,7 @@ const Orders = () => {
   return (
     <div>
       <DataTable columns={orderColumns} data={ordersData} isPagination={true} entries={[10, 25, 50, 100]} handleAdd={handleAddOrders} />
-
-      <div className={`fixed top-0 right-0 h-full w-100 bg-white z-80 shadow-lg transform transition-transform duration-300 ease-in-out ${openAddForm ? "translate-x-0" : "translate-x-full "} `}>
-        <form onSubmit={formik.handleSubmit} className='space-y-4'>
-
-          <div className='flex justify-between p-4' onClick={() => { dispatch(setOpenAddForm());formik.resetForm() }}>
-            <h1 className='text-lg font-semibold  hover:text-gray-500'>Add Orders</h1>
-            <X className='hover:text-red-500 cursor-pointer' />
-          </div>
-          {
-            ORDER_FIELDS.map((field) => (
-              <CustomInput
-                key={field.id}
-                label={field.label}
-                name={field.name}
-                placeholder={field.placeholder}
-                type={field.type}
-                options={field.options}
-                formik={formik}
-              />
-            ))
-          }
-
-          <button className='p-3 mx-14 bg-green-500 hover:bg-green-700 rounded w-[70%] cursor-pointer text-lg font-semibold ' type='submit'>Submit</button>
-        </form>
-
-      </div>
+<CustomForm FIELDS={ORDER_FIELDS} formik={formik} state={openAddForm} setter={()=>{dispatch(setOpenAddForm())}}/>
     </div>
   )
 }

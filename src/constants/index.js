@@ -57,7 +57,7 @@ export const ORDER_FIELDS=[
         id:2,
         label:"Date",
         name:"date",
-        type:"text"
+        type:"date"
     },
     {
         id:3,
@@ -71,5 +71,28 @@ export const ORDER_FIELDS=[
         label:'Total Amount',
         type:"text",
         name:'totalAmount'
+    }
+]
+
+
+export const PRODUCT_FIELDS =[
+    {
+        id:1,
+        label:"Product Name",
+        name:"productName",
+        type:"text"
+    },
+    {
+        id:2,
+        label:"Description",
+        name:"description",
+        type:'text'
+    },
+    {
+        id:3,
+        label:"Status",
+        name:'status',
+        type:'select',
+        options:["Available","Not Available"]
     }
 ]

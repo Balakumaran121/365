@@ -1,6 +1,28 @@
+import { useDispatch, useSelector } from 'react-redux';
 import DataTable from '../componenst/DataTable'
+import { setOpenAdd } from '../redux/slices/menuSlice';
+import toast from 'react-hot-toast';
+import CustomForm from '../componenst/CustomForm';
+import { PRODUCT_FIELDS } from '../constants';
+import { useFormik } from 'formik';
+import { productScehma } from '../validaionSchema/productSchema';
 
+
+const initialValues = PRODUCT_FIELDS.reduce((acc,field)=>{
+  acc[field.name]=""
+  return acc;
+},{})
 const Products = () => {
+  const dispatch = useDispatch()
+  const {openForm}=useSelector((state)=>state.menu)
+  const handleProducts = ()=>{
+   const isAdd = true
+   if(isAdd){
+    dispatch(setOpenAdd(true))
+   }else{
+    toast.error("Can't Add Product")
+   }
+  }
   const columns = [
     {
       header: "Product ID",
@@ -25,9 +47,14 @@ const Products = () => {
       }
     }
   ]
+  const formik = useFormik({
+    initialValues:initialValues,
+    validationSchema:productScehma,
+  })
   return (
     <div>
-      <DataTable columns={columns} data={[]} />
+      <DataTable columns={columns} data={[]} handleAdd={handleProducts} />
+     <CustomForm FIELDS={PRODUCT_FIELDS} formik={formik} state={openForm} setter={()=>{dispatch(setOpenAdd())}}/>
     </div>
   )
 }
