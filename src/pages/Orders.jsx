@@ -92,7 +92,7 @@ const Orders = () => {
       <div className={`fixed top-0 right-0 h-full w-100 bg-white z-80 shadow-lg transform transition-transform duration-300 ease-in-out ${openAddForm ? "translate-x-0" : "translate-x-full "} `}>
         <form onSubmit={formik.handleSubmit} className='space-y-4'>
 
-          <div className='flex justify-between p-4' onClick={() => { dispatch(setOpenAddForm()) }}>
+          <div className='flex justify-between p-4' onClick={() => { dispatch(setOpenAddForm());formik.resetForm() }}>
             <h1 className='text-lg font-semibold  hover:text-gray-500'>Add Orders</h1>
             <X className='hover:text-red-500 cursor-pointer' />
           </div>
@@ -106,12 +106,11 @@ const Orders = () => {
                 type={field.type}
                 options={field.options}
                 formik={formik}
-
               />
             ))
           }
 
-          <button className='p-3 mx-14 bg-green-500 rounded w-[70%] cursor-pointer ' type='submit'>Submit</button>
+          <button className='p-3 mx-14 bg-green-500 hover:bg-green-700 rounded w-[70%] cursor-pointer text-lg font-semibold ' type='submit'>Submit</button>
         </form>
 
       </div>
