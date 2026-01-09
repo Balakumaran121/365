@@ -14,6 +14,8 @@ const initialValues = ORDER_FIELDS.reduce((acc, field) => {
 const Orders = () => {
   const dispatch = useDispatch()
   const { ordersData, openAddForm } = useSelector((state) => state.orders)
+  const {tripData}=useSelector((state)=>state.trip)
+  const {driversData}=useSelector((state)=>state.driver)
   const handleAdd = (values) => {
     dispatch(setOrdersData(values))
     dispatch(setOpenAddForm())
@@ -67,7 +69,6 @@ const Orders = () => {
         const value = row.original
         return (
           <div className='flex gap-3 cursor-pointer'>
-
             <SquarePen size={20} onClick={() => { console.log("edit", value) }} />
             <Trash size={20} onClick={() => {dispatch(deleteOrdersData(value.id)) }} />
           </div>
@@ -78,8 +79,8 @@ const Orders = () => {
 
 
   const handleAddOrders = () => {
-    const isAdd = true;
-    if (isAdd) {
+
+    if (tripData?.length && driversData.length ) {
       dispatch(setOpenAddForm())
     } else {
       toast.error("Orders Can't Add!")
