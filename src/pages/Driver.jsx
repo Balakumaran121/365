@@ -15,7 +15,10 @@ const Driver = () => {
   const {driversData}= useSelector((state)=>state.driver)
   const {openForm}=useSelector((state)=>state.menu)
   const formik = useFormik({
-    initialValues:{},
+    initialValues:DRIVER_FIELDS.reduce((acc,field)=>{
+      acc[field.name]="";
+      return acc;
+    },{}),
     validationSchema:driverScehma,
     onSubmit:(val)=>{
       dispatch(setDriverData(val))
