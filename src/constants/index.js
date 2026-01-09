@@ -131,3 +131,24 @@ export const DRIVER_FIELDS = [
         name:"drivingLicense"
     }
 ]
+
+export const TRIPS_FIELD=[
+    {
+        id:1,
+        label:"Trips Name",
+        name:"tripName",
+        type:"text"
+    },
+    {
+        id:2,
+        label:"Vehicle Number",
+        name:"vehicleNumber",
+        type:"text"
+    },
+    {
+        id:3,
+        name:"productName",
+        label:"Product Name",
+        type:"text"
+    }
+]

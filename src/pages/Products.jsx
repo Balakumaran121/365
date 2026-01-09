@@ -64,7 +64,6 @@ const Products = () => {
       accessorKey: "action",
       cell: ({ row }) => {
         const value = row.original
-        console.log(value)
         return (
           <div className='flex gap-3 cursor-pointer'>
 
