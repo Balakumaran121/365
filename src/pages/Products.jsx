@@ -40,8 +40,18 @@ const Products = () => {
       accessorKey: 'price'
     },
     {
+      header:"Status",
+      accessorKey:"status",
+      cell:({getValue})=>{
+        const value = getValue();
+        return (
+          <div className={`w-fit rounded-full px-2 text-white font-semibold ${value=="Available"?"bg-green-500":"bg-red-500"}`}>{value}</div>
+        )
+      }
+    },
+    {
       header: "In Stock",
-      accessorKey: 'status',
+      accessorKey: 'stock',
       cell:({getValue})=>{
         const value = getValue();
         return (
@@ -71,6 +81,7 @@ const Products = () => {
     onSubmit:(val)=>{
       dispatch(setProductsData(val))
       dispatch(setOpenAdd(false))
+      formik.resetForm()
     }
   })
 

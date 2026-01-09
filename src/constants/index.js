@@ -94,5 +94,17 @@ export const PRODUCT_FIELDS =[
         name:'status',
         type:'select',
         options:["Available","Not Available"]
+    },
+    {
+        id:4,
+        label:"In Stock",
+        name:"stock",
+        type:"text"
+    },
+    {
+        id:5,
+        label:"Price",
+        name:'price',
+        type:"text"
     }
 ]
