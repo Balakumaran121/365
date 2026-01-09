@@ -2,7 +2,7 @@ import React from 'react'
 import CustomInput from './CustomInput';
 import { X } from 'lucide-react';
 
-const CustomForm = ({formik,FIELDS,setter,state}) => {
+const CustomForm = ({formik,FIELDS,setter,state,title="Order"}) => {
   return (
     
       <div className={`fixed top-0 right-0 h-full w-100 bg-white z-80 shadow-lg transform transition-transform duration-300 ease-in-out ${state ? "translate-x-0" : "translate-x-full "} `}>
@@ -10,7 +10,7 @@ const CustomForm = ({formik,FIELDS,setter,state}) => {
            
 
           <div className='flex justify-between items-center p-4 border-b' onClick={() => { setter();formik?.resetForm() }}>
-            <h1 className='text-lg font-semibold  '>Add Orders</h1>
+            <h1 className='text-lg font-semibold  '>Add {title}</h1>
             <X className='hover:text-red-500 cursor-pointer' />
           </div>
           <div className='flex-1 overflow-y-auto p-4 space-y-4'>

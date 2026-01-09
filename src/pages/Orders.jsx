@@ -88,7 +88,7 @@ const Orders = () => {
   return (
     <div>
       <DataTable columns={orderColumns} data={ordersData} isPagination={true} entries={[10, 25, 50, 100]} handleAdd={handleAddOrders} />
-<CustomForm FIELDS={ORDER_FIELDS} formik={formik} state={openAddForm} setter={()=>{dispatch(setOpenAddForm())}}/>
+<CustomForm FIELDS={ORDER_FIELDS} formik={formik} title='Products' state={openAddForm} setter={()=>{dispatch(setOpenAddForm())}}/>
     </div>
   )
 }

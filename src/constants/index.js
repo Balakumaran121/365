@@ -108,3 +108,26 @@ export const PRODUCT_FIELDS =[
         type:"text"
     }
 ]
+
+
+export const DRIVER_FIELDS = [
+    {
+        id:1,
+        name:"driverName",
+        label:"Driver Name",
+        type:"text"
+    },
+    {
+        id:2,
+        name:"status",
+        label:"Status",
+        type:"select",
+        options:["Active","In-active"],
+    },
+    {
+        id:3,
+        label:"Driving License Number",
+        type:"text",
+        name:"drivingLicense"
+    }
+]

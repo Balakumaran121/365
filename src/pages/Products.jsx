@@ -88,7 +88,7 @@ const Products = () => {
   return (
     <div>
       <DataTable columns={columns} data={productsData} handleAdd={handleProducts} />
-     <CustomForm FIELDS={PRODUCT_FIELDS} formik={formik} state={openForm} setter={()=>{dispatch(setOpenAdd(false))}}/>
+     <CustomForm FIELDS={PRODUCT_FIELDS} title='Products' formik={formik} state={openForm} setter={()=>{dispatch(setOpenAdd(false))}}/>
     </div>
   )
 }
