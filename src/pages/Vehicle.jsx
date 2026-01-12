@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import DataTable from '../componenst/DataTable';
 import { VEHICLE_FIELD } from '../constants';
-import { vehicleSchema } from '../validaionSchema/vehicleSchema';
+import { vehicleSchema } from '../validations/vehicleSchema';
 import CustomForm from '../componenst/CustomForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpenAdd } from '../redux/slices/menuSlice';

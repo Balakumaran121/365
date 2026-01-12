@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import CustomForm from '../componenst/CustomForm';
 import { PRODUCT_FIELDS } from '../constants';
 import { useFormik } from 'formik';
-import { productScehma } from '../validaionSchema/productSchema';
+import { productScehma } from '../validations/productSchema';
 import { deleteProducts, setProductsData } from '../redux/slices/productSlice';
 import { SquarePen, Trash } from 'lucide-react';
 

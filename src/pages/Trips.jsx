@@ -5,7 +5,7 @@ import { TRIPS_FIELD } from '../constants';
 import { setOpenAdd } from '../redux/slices/menuSlice';
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
-import { tripScehma } from '../validaionSchema/tripSchema';
+import { tripScehma } from '../validations/tripSchema';
 import { deleteTripsData, setTripsData } from '../redux/slices/tripSlice';
 import { Trash, SquarePen } from 'lucide-react';
 
