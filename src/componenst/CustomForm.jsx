@@ -1,4 +1,3 @@
-import React from 'react'
 import CustomInput from './CustomInput';
 import { X } from 'lucide-react';
 

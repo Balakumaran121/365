@@ -1,5 +1,3 @@
-import React from 'react'
-
 const CustomInput = ({ placeholder, name, label,type="text",formik,options=[] }) => {
     const error = formik?.touched[name] && formik?.errors[name]
     return (

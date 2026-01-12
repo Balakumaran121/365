@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { NAV_ITEMS } from '../constants'
-import { Link } from 'react-router-dom'
 import { Menu, X } from 'lucide-react';
 import NavItem from './NavItem';
 const TopBar = () => {

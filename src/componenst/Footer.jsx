@@ -1,5 +1,3 @@
-import { Instagram } from 'lucide-react'
-import React from 'react'
 import { ICONS } from '../constants'
 
 const Footer = () => {
