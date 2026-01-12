@@ -14,7 +14,7 @@ const initialValues = ORDER_FIELDS.reduce((acc, field) => {
 const Orders = () => {
   const dispatch = useDispatch()
   const { ordersData, openAddForm } = useSelector((state) => state.orders)
-  const {tripData}=useSelector((state)=>state.trip)
+  const {productsData} = useSelector((state)=>state.products)
   const {driversData}=useSelector((state)=>state.driver)
   const handleAdd = (values) => {
     dispatch(setOrdersData(values))
@@ -80,7 +80,7 @@ const Orders = () => {
 
   const handleAddOrders = () => {
 
-    if (tripData?.length && driversData.length ) {
+    if (productsData?.length && driversData.length ) {
       dispatch(setOpenAddForm())
     } else {
       toast.error("Orders Can't Add!")

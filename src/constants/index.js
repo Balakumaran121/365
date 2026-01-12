@@ -46,109 +46,130 @@ export const ICONS = [
 ]
 
 
-export const ORDER_FIELDS=[
+export const ORDER_FIELDS = [
     {
-        id:1,
-        label:"Customer Name",
-        name:"customerName",
-        type:"text"
+        id: 1,
+        label: "Customer Name",
+        name: "customerName",
+        type: "text"
     },
     {
-        id:2,
-        label:"Date",
-        name:"date",
-        type:"date"
+        id: 2,
+        label: "Date",
+        name: "date",
+        type: "date"
     },
     {
-        id:3,
-        label:"Status",
-        type:'select',
-        name:"status",
-        options:["Pending","Completed","In-progress"]
+        id: 3,
+        label: "Status",
+        type: 'select',
+        name: "status",
+        options: ["Pending", "Completed", "In-progress"]
     },
     {
-        id:4,
-        label:'Total Amount',
-        type:"text",
-        name:'totalAmount'
+        id: 4,
+        label: 'Total Amount',
+        type: "text",
+        name: 'totalAmount'
     }
 ]
 
 
-export const PRODUCT_FIELDS =[
+export const PRODUCT_FIELDS = [
     {
-        id:1,
-        label:"Product Name",
-        name:"productName",
-        type:"text"
+        id: 1,
+        label: "Product Name",
+        name: "productName",
+        type: "text"
     },
     {
-        id:2,
-        label:"Description",
-        name:"description",
-        type:'text'
+        id: 2,
+        label: "Description",
+        name: "description",
+        type: 'text'
     },
     {
-        id:3,
-        label:"Status",
-        name:'status',
-        type:'select',
-        options:["Available","Not Available"]
+        id: 3,
+        label: "Status",
+        name: 'status',
+        type: 'select',
+        options: ["Available", "Not Available"]
     },
     {
-        id:4,
-        label:"In Stock",
-        name:"stock",
-        type:"text"
+        id: 4,
+        label: "In Stock",
+        name: "stock",
+        type: "text"
     },
     {
-        id:5,
-        label:"Price",
-        name:'price',
-        type:"text"
+        id: 5,
+        label: "Price",
+        name: 'price',
+        type: "text"
     }
 ]
 
 
 export const DRIVER_FIELDS = [
     {
-        id:1,
-        name:"driverName",
-        label:"Driver Name",
-        type:"text"
+        id: 1,
+        name: "driverName",
+        label: "Driver Name",
+        type: "text"
     },
     {
-        id:2,
-        name:"status",
-        label:"Status",
-        type:"select",
-        options:["Active","In-active"],
+        id: 2,
+        name: "status",
+        label: "Status",
+        type: "select",
+        options: ["Active", "In-active"],
     },
     {
-        id:3,
-        label:"Driving License Number",
-        type:"text",
-        name:"drivingLicense"
+        id: 3,
+        label: "Driving License Number",
+        type: "text",
+        name: "drivingLicense"
     }
 ]
 
-export const TRIPS_FIELD=[
+export const TRIPS_FIELD = [
     {
-        id:1,
-        label:"Trips Name",
-        name:"tripName",
-        type:"text"
+        id: 1,
+        label: "Trips Name",
+        name: "tripName",
+        type: "text"
     },
     {
-        id:2,
-        label:"Vehicle Number",
-        name:"vehicleNumber",
-        type:"text"
+        id: 2,
+        label: "Vehicle Number",
+        name: "vehicleNumber",
+        type: "text"
     },
     {
-        id:3,
-        name:"productName",
-        label:"Product Name",
-        type:"text"
+        id: 3,
+        name: "productName",
+        label: "Product Name",
+        type: "text"
+    }
+]
+
+export const VEHICLE_FIELD = [
+    {
+        id: 1,
+        label: "Vehicle Name",
+        name: 'vehicleName',
+        type: "text"
+    },
+    {
+        id: 2,
+        label: "Vehicle Capacity",
+        name: "vehicleCapacity",
+        type: "text"
+    },
+    {
+        id: 3,
+        label: 'Vehicle Type',
+        name: "vehicleType",
+        type: "text"
     }
 ]

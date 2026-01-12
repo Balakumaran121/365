@@ -6,16 +6,18 @@ import ProductSlice from './slices/productSlice';
 import MenuSlice from './slices/menuSlice'
 import DriverSice from "./slices/driverSlice";
 import TripSlice from './slices/tripSlice'
+import vehicleSlice from "./slices/vehicleSlice";
 const persistConfig = {
     key: 'root',
     storage
 }
-const rootReducer =combineReducers({
+const rootReducer = combineReducers({
     orders: OrderSlice,
-    products:ProductSlice,
-    menu:MenuSlice,
-    driver:DriverSice,
-    trip:TripSlice
+    products: ProductSlice,
+    menu: MenuSlice,
+    driver: DriverSice,
+    trip: TripSlice,
+    vehicle: vehicleSlice
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const store = configureStore({
