@@ -170,6 +170,7 @@ export const VEHICLE_FIELD = [
         id: 3,
         label: 'Vehicle Type',
         name: "vehicleType",
-        type: "text"
+        type: "select",
+        options:["Ton","Kg","Cubic"]
     }
 ]

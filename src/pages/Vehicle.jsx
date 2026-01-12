@@ -5,6 +5,7 @@ import { vehicleSchema } from '../validaionSchema/vehicleSchema';
 import CustomForm from '../componenst/CustomForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpenAdd } from '../redux/slices/menuSlice';
+import { setVehicleData } from '../redux/slices/vehicleSlice';
 
 const Vehicle = () => {
   const dispatch = useDispatch()
@@ -13,22 +14,39 @@ const Vehicle = () => {
   const columns =[
     {
       header:"Vehicle ID",
-      accessorkey:"vehicleId"
+      accessorKey:"vehicleId"
     },
     {
       header:"Vehicle Name",
-      accessorkey:'vehicleName'
+      accessorKey:'vehicleName'
     }, 
+    {
+      header:"Vehcile Type",
+      accessorKey:"vehicleType"
+    },
+    {
+      header:"Vehicle Capacity",
+      accessorKey:"vehicleCapacity",
+      cell:({getValue})=>{
+        const value = getValue()
+        return (
+          <div>
+            {value} Ton
+          </div>
+        )
+      }
+    }
   ]
 
   const formik = useFormik({
     initialValues:VEHICLE_FIELD.reduce((acc,field)=>{
       acc[field.name]="";
       return acc;
-    }),
+    },{}),
     validationSchema:vehicleSchema,
     onSubmit:(val)=>{
-      console.log(val)
+      dispatch(setVehicleData(val))
+      dispatch(setOpenAdd(false))
     }
 
   })
