@@ -1,12 +1,12 @@
-import { SquarePen, Trash } from 'lucide-react';
 import DataTable from '../componenst/DataTable'
 import { ORDER_FIELDS } from '../constants'
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { setOpenAddForm, setOrdersData ,deleteOrdersData} from '../redux/slices/orderSlice';
+import { setOpenAddForm, setOrdersData, deleteOrdersData } from '../redux/slices/orderSlice';
 import { useFormik } from 'formik';
 import { orderSchema } from '../validations/ordersSchema';
 import CustomForm from '../componenst/CustomForm';
+import ActionButtons from '../componenst/ActionButtons';
 const initialValues = ORDER_FIELDS.reduce((acc, field) => {
   acc[field.name] = ""
   return acc;
@@ -14,8 +14,8 @@ const initialValues = ORDER_FIELDS.reduce((acc, field) => {
 const Orders = () => {
   const dispatch = useDispatch()
   const { ordersData, openAddForm } = useSelector((state) => state.orders)
-  const {productsData} = useSelector((state)=>state.products)
-  const {driversData}=useSelector((state)=>state.driver)
+  const { productsData } = useSelector((state) => state.products)
+  const { driversData } = useSelector((state) => state.driver)
   const handleAdd = (values) => {
     dispatch(setOrdersData(values))
     dispatch(setOpenAddForm())
@@ -68,10 +68,7 @@ const Orders = () => {
       cell: ({ row }) => {
         const value = row.original
         return (
-          <div className='flex gap-3 cursor-pointer'>
-            <SquarePen size={20} onClick={() => { console.log("edit", value) }} />
-            <Trash size={20} onClick={() => {dispatch(deleteOrdersData(value.id)) }} />
-          </div>
+          <ActionButtons handleDelete={() => { dispatch(deleteOrdersData(value.id)) }} handleEdit={() => { console.log("edit", value) }} />
         )
       }
     }
@@ -80,7 +77,7 @@ const Orders = () => {
 
   const handleAddOrders = () => {
 
-    if (productsData?.length && driversData.length ) {
+    if (productsData?.length && driversData.length) {
       dispatch(setOpenAddForm())
     } else {
       toast.error("Orders Can't Add!")
@@ -89,7 +86,7 @@ const Orders = () => {
   return (
     <div>
       <DataTable columns={orderColumns} data={ordersData} isPagination={true} entries={[10, 25, 50, 100]} handleAdd={handleAddOrders} />
-<CustomForm FIELDS={ORDER_FIELDS} formik={formik} title='Products' state={openAddForm} setter={()=>{dispatch(setOpenAddForm())}}/>
+      <CustomForm FIELDS={ORDER_FIELDS} formik={formik} title='Products' state={openAddForm} setter={() => { dispatch(setOpenAddForm()) }} />
     </div>
   )
 }

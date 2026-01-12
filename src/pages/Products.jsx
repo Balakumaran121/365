@@ -7,24 +7,24 @@ import { PRODUCT_FIELDS } from '../constants';
 import { useFormik } from 'formik';
 import { productScehma } from '../validations/productSchema';
 import { deleteProducts, setProductsData } from '../redux/slices/productSlice';
-import { SquarePen, Trash } from 'lucide-react';
+import ActionButtons from '../componenst/ActionButtons';
 
 
-const initialValues = PRODUCT_FIELDS.reduce((acc,field)=>{
-  acc[field.name]=""
+const initialValues = PRODUCT_FIELDS.reduce((acc, field) => {
+  acc[field.name] = ""
   return acc;
-},{})
+}, {})
 const Products = () => {
   const dispatch = useDispatch()
-  const {openForm}=useSelector((state)=>state.menu)
-  const {productsData} = useSelector((state)=>state.products)
-  const handleProducts = ()=>{
-   const isAdd = true
-   if(isAdd){
-    dispatch(setOpenAdd(true))
-   }else{
-    toast.error("Can't Add Product")
-   }
+  const { openForm } = useSelector((state) => state.menu)
+  const { productsData } = useSelector((state) => state.products)
+  const handleProducts = () => {
+    const isAdd = true
+    if (isAdd) {
+      dispatch(setOpenAdd(true))
+    } else {
+      toast.error("Can't Add Product")
+    }
   }
   const columns = [
     {
@@ -40,22 +40,22 @@ const Products = () => {
       accessorKey: 'price'
     },
     {
-      header:"Status",
-      accessorKey:"status",
-      cell:({getValue})=>{
+      header: "Status",
+      accessorKey: "status",
+      cell: ({ getValue }) => {
         const value = getValue();
         return (
-          <div className={`w-fit rounded-full px-2 text-white font-semibold ${value=="Available"?"bg-green-500":"bg-red-500"}`}>{value}</div>
+          <div className={`w-fit rounded-full px-2 text-white font-semibold ${value == "Available" ? "bg-green-500" : "bg-red-500"}`}>{value}</div>
         )
       }
     },
     {
       header: "In Stock",
       accessorKey: 'stock',
-      cell:({getValue})=>{
+      cell: ({ getValue }) => {
         const value = getValue();
         return (
-          <span className={` px-1 py-2 ${value>0?"text-green-500":"text-red-500"}`}>{value>0?value:"Out of Stock"}</span>
+          <span className={` px-1 py-2 ${value > 0 ? "text-green-500" : "text-red-500"}`}>{value > 0 ? value : "Out of Stock"}</span>
         )
       }
     },
@@ -65,19 +65,15 @@ const Products = () => {
       cell: ({ row }) => {
         const value = row.original
         return (
-          <div className='flex gap-3 cursor-pointer'>
-
-            <SquarePen size={20} onClick={() => { console.log("edit", value) }} />
-            <Trash size={20} onClick={() => {dispatch(deleteProducts(value.id)) }} />
-          </div>
+          <ActionButtons handleDelete={() => { dispatch(deleteProducts(value.id)) }} handleEdit={() => { console.log("edit", value) }} />
         )
       }
     }
   ]
   const formik = useFormik({
-    initialValues:initialValues,
-    validationSchema:productScehma,
-    onSubmit:(val)=>{
+    initialValues: initialValues,
+    validationSchema: productScehma,
+    onSubmit: (val) => {
       dispatch(setProductsData(val))
       dispatch(setOpenAdd(false))
       formik.resetForm()
@@ -87,7 +83,7 @@ const Products = () => {
   return (
     <div>
       <DataTable columns={columns} data={productsData} handleAdd={handleProducts} />
-     <CustomForm FIELDS={PRODUCT_FIELDS} title='Products' formik={formik} state={openForm} setter={()=>{dispatch(setOpenAdd(false))}}/>
+      <CustomForm FIELDS={PRODUCT_FIELDS} title='Products' formik={formik} state={openForm} setter={() => { dispatch(setOpenAdd(false)) }} />
     </div>
   )
 }

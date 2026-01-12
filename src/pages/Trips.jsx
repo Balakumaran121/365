@@ -7,55 +7,52 @@ import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
 import { tripScehma } from '../validations/tripSchema';
 import { deleteTripsData, setTripsData } from '../redux/slices/tripSlice';
-import { Trash, SquarePen } from 'lucide-react';
+import ActionButtons from '../componenst/ActionButtons';
 
-const Trips = () => { 
+const Trips = () => {
   const dispatch = useDispatch()
-  const {tripsData}=useSelector((state)=>state.trip)
-  const {openForm}=useSelector((state)=>state.menu)
-  const handleDriverAdd = ()=>{
+  const { tripsData } = useSelector((state) => state.trip)
+  const { openForm } = useSelector((state) => state.menu)
+  const handleDriverAdd = () => {
     const isAdd = true;
-    if(isAdd){
+    if (isAdd) {
       dispatch(setOpenAdd(true))
-    }else{
+    } else {
       toast.error("Can't add trip")
     }
   }
-  const columns =[
+  const columns = [
     {
-      header:"Trip ID",
-      accessorKey:"tripId"
+      header: "Trip ID",
+      accessorKey: "tripId"
     },
     {
-      header:"Vehicle Number",
-      accessorKey:'vehicleNumber'
+      header: "Vehicle Number",
+      accessorKey: 'vehicleNumber'
     },
     {
-      header:"Product",
-      accessorKey:"productName"
+      header: "Product",
+      accessorKey: "productName"
     },
     {
-      header:'Action',
-      accessorKey:"action",
-      cell:({row})=>{
+      header: 'Action',
+      accessorKey: "action",
+      cell: ({ row }) => {
         const value = row.original
         return (
-          <div className='flex gap-3 cursor-pointer'>
-            <SquarePen size={20} onClick={()=>console.log("edit",value)}/>
-            <Trash size={20} onClick={()=>{dispatch(deleteTripsData(value.id))}}/>
-          </div>
+          <ActionButtons handleDelete={() => { dispatch(deleteTripsData(value.id)) }} handleEdit={() => console.log("edit", value)} />
         )
       }
     }
-    
+
   ]
-  const formik =useFormik({
-    initialValues:TRIPS_FIELD.reduce((acc,field)=>{
-      acc[field.name]=""
+  const formik = useFormik({
+    initialValues: TRIPS_FIELD.reduce((acc, field) => {
+      acc[field.name] = ""
       return acc;
-    },{}),
-    validationSchema:tripScehma,
-    onSubmit:(val)=>{
+    }, {}),
+    validationSchema: tripScehma,
+    onSubmit: (val) => {
       dispatch(setTripsData(val))
       dispatch(setOpenAdd(false))
       formik.resetForm()
@@ -64,8 +61,8 @@ const Trips = () => {
   })
   return (
     <div>
-      <DataTable columns={columns} data={tripsData} handleAdd={handleDriverAdd}/>
-      <CustomForm FIELDS={TRIPS_FIELD} title='Trips' state={openForm} setter={()=>{dispatch(setOpenAdd(false))}} formik={formik}/>
+      <DataTable columns={columns} data={tripsData} handleAdd={handleDriverAdd} />
+      <CustomForm FIELDS={TRIPS_FIELD} title='Trips' state={openForm} setter={() => { dispatch(setOpenAdd(false)) }} formik={formik} />
     </div>
   )
 }

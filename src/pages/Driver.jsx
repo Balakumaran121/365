@@ -8,61 +8,58 @@ import { useFormik } from 'formik'
 import { driverScehma } from '../validations/driverSchema'
 import toast from 'react-hot-toast'
 import { deleteDriversData, setDriverData } from '../redux/slices/driverSlice'
-import { SquarePen, Trash } from 'lucide-react'
+import ActionButtons from '../componenst/ActionButtons'
 
 const Driver = () => {
-  const dispatch =useDispatch()
-  const {driversData}= useSelector((state)=>state.driver)
-  const {openForm}=useSelector((state)=>state.menu)
+  const dispatch = useDispatch()
+  const { driversData } = useSelector((state) => state.driver)
+  const { openForm } = useSelector((state) => state.menu)
   const formik = useFormik({
-    initialValues:DRIVER_FIELDS.reduce((acc,field)=>{
-      acc[field.name]="";
+    initialValues: DRIVER_FIELDS.reduce((acc, field) => {
+      acc[field.name] = "";
       return acc;
-    },{}),
-    validationSchema:driverScehma,
-    onSubmit:(val)=>{
+    }, {}),
+    validationSchema: driverScehma,
+    onSubmit: (val) => {
       dispatch(setDriverData(val))
       dispatch(setOpenAdd(false))
       formik.resetForm()
     }
   })
-  const handleDrivers = ()=>{
+  const handleDrivers = () => {
     const isAdd = true;
-    if(isAdd){
+    if (isAdd) {
       dispatch(setOpenAdd(true))
-    }else{
+    } else {
       toast.error("Can't Add Driver")
     }
   }
 
-  const columns =[
+  const columns = [
     {
-      header:"Driver Id",
-      accessorKey:"driverId"
+      header: "Driver Id",
+      accessorKey: "driverId"
     },
     {
-      header:"Driver Name",
-      accessorKey:"driverName"
+      header: "Driver Name",
+      accessorKey: "driverName"
     },
     {
-      header:"Actions",
-      accessorKey:"action",
-      cell:({row})=>{
+      header: "Actions",
+      accessorKey: "action",
+      cell: ({ row }) => {
         const value = row.original
 
-        return(
-          <div className='flex gap-3 cursor-pointer'>
-            <SquarePen size={20} onClick={()=>console.log("edit",value)}/>
-            <Trash size={20} onClick={()=>{dispatch(deleteDriversData(value.id))}}/>
-          </div>
+        return (
+          <ActionButtons handleDelete={() => { dispatch(deleteDriversData(value.id)) }} handleEdit={() => console.log("edit", value)} />
         )
       }
     }
   ]
   return (
     <div>
-      <DataTable columns={columns}  data={driversData} handleAdd={handleDrivers}/>
-      <CustomForm FIELDS={DRIVER_FIELDS} title="Driver" setter={()=>{dispatch(setOpenAdd(false))}} state={openForm} formik={formik}/>
+      <DataTable columns={columns} data={driversData} handleAdd={handleDrivers} />
+      <CustomForm FIELDS={DRIVER_FIELDS} title="Driver" setter={() => { dispatch(setOpenAdd(false)) }} state={openForm} formik={formik} />
     </div>
   )
 }
