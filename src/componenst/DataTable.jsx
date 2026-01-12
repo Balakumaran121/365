@@ -3,7 +3,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-const DataTable = ({ data=[], columns=[],handleAdd=()=>{} }) => {
+const DataTable = ({ data=[], columns=[],handleAdd=()=>{},showUploadButton=false ,handleUpload=()=>{}}) => {
     const {pathname}= useLocation()
     const RouteName =pathname.slice(1).charAt(0).toUpperCase()+ pathname.slice(2)
     
@@ -49,6 +49,12 @@ const handleClickOutside = (event)=>{
                 <button onClick={handleAdd} className="bg-green-500 p-2 text-white rounded-md text-lg font-semibold cursor-pointer">
                     Add {RouteName}
                 </button>
+                {
+                    showUploadButton && 
+                    <button onClick={handleUpload} className="bg-yellow-500 p-2 text-white rounded-md text-lg font-semibold cursor-pointer m-3">
+                        Upload
+                    </button>
+                }
                     </div>
                 {
                     showColumnsMenu &&
