@@ -13,8 +13,11 @@ const vehicleSlice = createSlice({
                 id: vehId,
                 vehicleId: `VH-${vehId}`
             })
+        },
+        deleteVehiclesData:(state,action)=>{
+            state.vehicleData= state.vehicleData.filter((val)=>val.id!==action.payload);
         }
     }
 });
-export const { setVehicleData } = vehicleSlice.actions;
+export const { setVehicleData,deleteVehiclesData } = vehicleSlice.actions;
 export default vehicleSlice.reducer;

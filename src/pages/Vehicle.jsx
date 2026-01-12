@@ -5,7 +5,8 @@ import { vehicleSchema } from '../validaionSchema/vehicleSchema';
 import CustomForm from '../componenst/CustomForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpenAdd } from '../redux/slices/menuSlice';
-import { setVehicleData } from '../redux/slices/vehicleSlice';
+import { deleteVehiclesData, setVehicleData } from '../redux/slices/vehicleSlice';
+import { SquarePen, Trash } from 'lucide-react';
 
 const Vehicle = () => {
   const dispatch = useDispatch()
@@ -32,6 +33,19 @@ const Vehicle = () => {
         return (
           <div>
             {value} Ton
+          </div>
+        )
+      }
+    },
+    {
+      header:"Actions",
+      accessorKey:"action",
+      cell:({row})=>{
+        const value = row.original
+        return (
+          <div className='flex items-center gap-3 cursor-pointer'>
+            <SquarePen size={20} onClick={()=>console.log("edit",value)}/>
+            <Trash size={20} onClick={()=>dispatch(deleteVehiclesData(value.id))}/>
           </div>
         )
       }
