@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getLastProductNumber } from "../../utils";
 
 const productSlice = createSlice({
     name: "productSlice",
@@ -7,19 +8,22 @@ const productSlice = createSlice({
     },
     reducers: {
         setProductsData: (state, action) => {
-            const proId = state.productsData.length + 1;
+            const lastNumber = getLastProductNumber(state.productsData);
+            const nextNumber = lastNumber+1;
             state.productsData.push({
                 ...action.payload,
-                id:proId,
-                productId:`PRO${proId}`
+                id:`PR-${String(nextNumber).padStart(2,"0")}`,
             })
 
         },
         deleteProducts:(state,action)=>{
             state.productsData=state.productsData.filter((val)=>val.id!==action.payload)
+        },
+        addBulkProducts:(state,action)=>{
+            state.productsData.push(...action.payload)
         }
     }
 })
 
-export const { setProductsData,deleteProducts } = productSlice.actions
+export const { setProductsData,deleteProducts,addBulkProducts } = productSlice.actions
 export default productSlice.reducer

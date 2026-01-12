@@ -56,7 +56,6 @@ const Trips = () => {
       dispatch(setTripsData(val))
       dispatch(setOpenAdd(false))
       formik.resetForm()
-      console.log(val)
     }
   })
   return (

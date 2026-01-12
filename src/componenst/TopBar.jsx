@@ -20,7 +20,7 @@ const TopBar = () => {
                 </ul>
 
             </nav>
-            <div className='flex items-center gap-4'>
+            <div className='flex items-center gap-4 cursor-pointer'>
                 <div className='relative'>
                     <div className='size-10 rounded-full bg-gray-400 flex justify-center items-center text-white' onClick={()=>{setOpenMenu(prev=>!prev)}}>
                         <h1>BK</h1>
