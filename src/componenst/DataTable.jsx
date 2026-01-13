@@ -63,7 +63,7 @@ const handleClickOutside = (event)=>{
                         {table.getAllLeafColumns().map((column) => (
                             <label key={column.id} className="flex gap-2 items-center text-sm">
                                 <input type="checkbox" className="peer hidden" checked={column.getIsVisible()} onChange={column.getToggleVisibilityHandler()} />
-                                <span className="size-4 rounded border border-gray-400 peer-checked:bg-green-600 peer-checked:border-green-600" />
+                                <span className="size-4 rounded border border-pharlap-400 peer-checked:bg-pharlap-600 peer-checked:border-pharlap-600" />
                                 <span>{column.columnDef.header}</span>
                             </label>
                         ))}
@@ -109,9 +109,9 @@ const handleClickOutside = (event)=>{
             </div>
             <div className="flex justify-between items-center mt-4">
                 <div className="flex gap-2">
-                    <button className="px-3 py-1 rounded border hover:bg-gray-100 hover:shadow-md" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Prev</button>
-                    <button className="px-3 py-1 rounded border hover:bg-gray-100 hover:shadow-md" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next</button>
-                    <span className="text-sm  flex items-center">Page {table.getState().pagination.pageIndex+1} of {" "}{table.getPageCount()}</span>
+                    <button className="px-3 py-1 rounded border bg-pharlap-50 hover:bg-pharlap-100 hover:shadow-md text-pharlap-500" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Prev</button>
+                    <button className="px-3 py-1 rounded border bg-pharlap-50 hover:bg-pharlap-100 hover:shadow-md text-pharlap-500" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next</button>
+                    <span className="text-sm  flex items-center text-pharlap-500">Page {table.getState().pagination.pageIndex+1} of {" "}{table.getPageCount()}</span>
                 </div>
             </div>
                 </>

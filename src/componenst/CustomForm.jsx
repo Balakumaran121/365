@@ -9,7 +9,7 @@ const CustomForm = ({formik,FIELDS,setter,state,title="Order"}) => {
            
 
           <div className='flex justify-between items-center p-4 border-b' onClick={() => { setter();formik?.resetForm() }}>
-            <h1 className='text-lg font-semibold  '>Add {title}</h1>
+            <h1 className='text-lg font-semibold text-pharlap-500 '>Add {title}</h1>
             <X className='hover:text-red-500 cursor-pointer' />
           </div>
           <div className='flex-1 overflow-y-auto p-4 space-y-4'>
@@ -31,7 +31,7 @@ const CustomForm = ({formik,FIELDS,setter,state,title="Order"}) => {
             
             <div className='p-4 border-t bg-white'>
 
-          <button className='p-3  bg-green-500 hover:bg-green-600 rounded w-full cursor-pointer text-lg font-semibold ' type='submit'>Submit</button>
+          <button className='p-3  bg-pharlap-500 hover:bg-pharlap-600 text-pharlap-50 rounded w-full cursor-pointer text-lg font-semibold ' type='submit'>Submit</button>
             </div>
         </form>
 
