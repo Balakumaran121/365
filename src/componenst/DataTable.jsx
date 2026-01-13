@@ -78,10 +78,10 @@ const handleClickOutside = (event)=>{
                 <div className="border border-gray-300 rounded">
                 {
                     table.getHeaderGroups().map((headerGroup) => (
-                        <div key={headerGroup.id} className="grid bg-gray-100 border-b" style={{ gridTemplateColumns: `repeat(${headerGroup.headers.length},1fr)` }}>
+                        <div key={headerGroup.id} className="grid bg-gray-100  border-b" style={{ gridTemplateColumns: `repeat(${headerGroup.headers.length},1fr)` }}>
                             {
                                 headerGroup.headers.map((header) => (
-                                    <div key={header.id} className="p-3 font-semibold cursor-pointer border-r last:border-0 flex gap-2" onClick={header.column.getToggleSortingHandler()}>
+                                    <div key={header.id} className="p-3 text-pharlap-600 font-semibold cursor-pointer border-r last:border-0 flex gap-2" onClick={header.column.getToggleSortingHandler()}>
                                         {flexRender(header.column.columnDef.header, header.getContext())}
                                         {{ asc: <ChevronDown />, desc: <ChevronUp /> }[header.column.getIsSorted()] ?? null}
                                     </div>
