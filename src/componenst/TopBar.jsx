@@ -6,14 +6,14 @@ const TopBar = () => {
     const [mobileOpen, setMobileOpen] = useState(false)
     const [openMenu,setOpenMenu]=useState(false)
     return (
-        <div className='bg-gray-100 py-4 px-6 flex items-center justify-between relative'>
-            <h1 className='text-xl font-extrabold text-green-600'>365.in</h1>
+        <div className='bg-pharlap-50 py-4 px-6 flex items-center justify-between relative'>
+            <h1 className='text-xl font-extrabold text-pharlap-900'>365.in</h1>
             <nav className='hidden md:block'>
                 <ul className='flex gap-10'>
                     {
                         NAV_ITEMS.map((item) => (
-                            <li key={item.id}>
-                                <NavItem to={item.path} variant="desktop">{item.title}</NavItem>
+                            <li key={item.id} >
+                                <NavItem to={item.path} variant="desktop" >{item.title}</NavItem>
                             </li>
                         ))
                     }
@@ -22,14 +22,14 @@ const TopBar = () => {
             </nav>
             <div className='flex items-center gap-4 cursor-pointer'>
                 <div className='relative'>
-                    <div className='size-10 rounded-full bg-gray-400 flex justify-center items-center text-white' onClick={()=>{setOpenMenu(prev=>!prev)}}>
+                    <div className='size-10 rounded-full bg-pharlap-800 flex justify-center items-center text-pharlap-50' onClick={()=>{setOpenMenu(prev=>!prev)}}>
                         <h1>BK</h1>
                     </div>
                         {
                             openMenu && (
-                                <div className='absolute z-10 top-12  bg-gray-300 flex flex-col gap-2 rounded p-2 right-1 text-base font-normal '>
-                                    <p>Settings</p>
-                                    <p>Profile</p>
+                                <div className='absolute z-10 top-12  bg-pharlap-500  text-pharlap-100 flex flex-col gap-2 rounded p-2 right-1 text-base font-normal '>
+                                    <p className='hover:bg-pharlap-400 px-2 rounded-full'>Settings</p>
+                                    <p className='hover:bg-pharlap-400 px-2 rounded-full'>Profile</p>
                                 </div>
                             )
                         }

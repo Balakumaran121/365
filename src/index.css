@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+
+@theme {
+    --color-pharlap-50: #faf7f6;
+    --color-pharlap-100: #f5eeeb;
+    --color-pharlap-200: #ede0db;
+    --color-pharlap-300: #dfcbc2;
+    --color-pharlap-400: #cbac9e;
+    --color-pharlap-500: #b68e7d;
+    --color-pharlap-600: #a7806f;
+    --color-pharlap-700: #856050;
+    --color-pharlap-800: #6f5245;
+    --color-pharlap-900: #5e483e;
+    --color-pharlap-950: #31241e;
+}

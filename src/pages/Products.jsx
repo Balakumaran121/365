@@ -117,12 +117,12 @@ const Products = () => {
           <div className='bg-white rounded-2xl w-[40%]'>
             <div className='flex m-2 text-center justify-between '>
 
-              <h1>Upload</h1>
+              <h1 className='text-pharlap-700 hover:text-pharlap-950'>Upload</h1>
               <X className='text-lg cursor-pointer' onClick={() => setShowUploadForm(false)} />
             </div>
             <div className='m-2 flex flex-col space-y-16'>
               <input type='file' onChange={handleChange} accept='.csv,.xlsx' />
-              <button className='px-2 bg-green-500 rounded-full text-white text-lg font-semibold' onClick={handleUpload}>Upload</button>
+              <button className='px-2 bg-pharlap-500 hover:bg-pharlap-600 cursor-pointer rounded-full text-white text-lg font-semibold' onClick={handleUpload}>Upload</button>
             </div>
           </div>
         </div>

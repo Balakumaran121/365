@@ -42,16 +42,16 @@ const handleClickOutside = (event)=>{
             <div className="relative">
                     <div className="flex items-center px-2">
 
-                <button className="p-2 rounded-md bg-green-500 w-fit text-white text-lg font-semibold block m-3 ml-auto cursor-pointer"
+                <button className="p-2 rounded-md bg-pharlap-700 hover:bg-pharlap-800 w-fit text-pharlap-50 text-lg font-semibold block m-3 ml-auto cursor-pointer"
                  onClick={(e) =>{ e.stopPropagation();setShowColumnsMenu(prev => !prev)}}>
                     Open Toggle Columns
                 </button>
-                <button onClick={handleAdd} className="bg-green-500 p-2 text-white rounded-md text-lg font-semibold cursor-pointer">
+                <button onClick={handleAdd} className="bg-pharlap-700 hover:bg-pharlap-800 p-2 text-pharlap-50 rounded-md text-lg font-semibold cursor-pointer">
                     Add {RouteName}
                 </button>
                 {
                     showUploadButton && 
-                    <button onClick={handleUpload} className="bg-yellow-500 p-2 text-white rounded-md text-lg font-semibold cursor-pointer m-3">
+                    <button onClick={handleUpload} className="border-pharlap-800 border p-2 text-pharlap-500 rounded-md text-lg font-semibold cursor-pointer m-3">
                         Upload
                     </button>
                 }
